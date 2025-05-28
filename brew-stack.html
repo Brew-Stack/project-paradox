@@ -169,6 +169,23 @@
     --applefont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+
+.highlighted-text span.keyword {
+    color: #ec4899; /* Tailwind's fuchsia-500 (dark pink) */
+    font-weight: 600;
+  }
+
+  .highlighted-text {
+    line-height: 1.75rem;
+    font-size: 1.125rem;
+  }
+
+  @media (min-width: 768px) {
+    .highlighted-text {
+      font-size: 1.25rem;
+    }
+  }
+
 .gradient-text {
     font-family: var(--applefont);
     background: linear-gradient(270deg, #ffffff, #69aaff, #ffffff);
@@ -224,16 +241,20 @@
                 </h2>
                 <div class="bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg p-8 md:p-10 rounded-xl shadow-2xl max-w-3xl mx-auto">
                     <h3 class="text-3xl md:text-4xl font-semibold mb-6 accent-color-alt">Project Paradox</h3>
-                    <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                    </p>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary text-lg">
+                   
+
+                    <p class="highlighted-text text-gray-300 mb-8">
+  What happens when you trap a group of <span class="keyword">emotionally reactive AI agents</span> in a village full of secrets?<br><br>
+  Can a <span class="keyword">cognitive LLM agent</span> lie, form <span class="keyword">beliefs</span>, and betray based on <span class="keyword">memory</span> and <span class="keyword">trust</span>?<br><br>
+  Welcome to <span class="keyword">Project Paradox</span> , a <span class="keyword">multi-agent</span>, <span class="keyword">social deduction game</span> powered by cutting-edge <span class="keyword">emotion and belief modeling</span>.<br><br>
+  Each character is an <span class="keyword">autonomous LLM</span> with <span class="keyword">personality</span>, evolving suspicion, and <span class="keyword">strategic planning</span>.<br><br>
+  Every conversation shifts the balance — will you survive, deceive, or deduce before the truth vanishes?
+</p>
+                    <a href="https://arunachalamm101202.github.io/project-paradox-web/" target="_blank" rel="noopener noreferrer" class="btn btn-primary text-lg">
                         Explore Project Paradox
                     </a>
                 </div>
-                <p class="mt-10 text-gray-400 text-md">
-                    An AI-powered social deduction game where nothing is as it seems.
-                </p>
+                
             </div>
         </div>
     </section>
@@ -247,7 +268,7 @@
                 </h2>
                 <div class="grid md:grid-cols-2 gap-10 md:gap-12 max-w-4xl mx-auto">
                     <div class="team-card p-6 md:p-8 rounded-xl shadow-xl text-center flex flex-col items-center">
-                        <img src="https://placehold.co/200x200/0D1117/33D7FF/png?text=Dev+One&font=inter" alt="Team Member 1 Photo" class="w-36 h-36 md:w-44 md:h-44 rounded-full mx-auto mb-6 member-photo object-cover">
+                        <img src="arun.jpeg" alt="Team Member 1 Photo" class="w-36 h-36 md:w-44 md:h-44 rounded-full mx-auto mb-6 member-photo object-cover">
                         <h3 class="text-2xl md:text-3xl font-bold mb-2">Arun</h3>
                         <p class="text-accent-color-alt italic mb-5 text-md md:text-lg">"My coffee intake is directly proportional to lines of code written."</p>
                         <div class="flex justify-center space-x-4 mt-auto pt-4">
@@ -261,7 +282,7 @@
                     </div>
 
                     <div class="team-card p-6 md:p-8 rounded-xl shadow-xl text-center flex flex-col items-center">
-                        <img src="https://placehold.co/200x200/0D1117/E020CF/png?text=Dev+Two&font=inter" alt="Team Member 2 Photo" class="w-36 h-36 md:w-44 md:h-44 rounded-full mx-auto mb-6 member-photo member-photo-alt object-cover">
+                        <img src="erina.jpeg" alt="Team Member 2 Photo" class="w-36 h-36 md:w-44 md:h-44 rounded-full mx-auto mb-6 member-photo member-photo-alt object-cover">
                         <h3 class="text-2xl md:text-3xl font-bold mb-2">Erina</h3>
                         <p class="text-accent-color italic mb-5 text-md md:text-lg">"Debugging is like being the detective in a crime movie where you are also the murderer."</p>
                         <div class="flex justify-center space-x-4 mt-auto pt-4">
@@ -274,9 +295,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="mt-16 text-gray-300 text-lg">
-                    Two minds, one mission: to brew unforgettable gaming experiences.
-                </p>
+                
             </div>
         </div>
     </section>
