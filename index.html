@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Paradox</title>
+    <title>Project Paradox - Multi-Agent LLM Framework</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234facfe'/%3E%3Cstop offset='100%25' style='stop-color:%2300f2fe'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='10' y='10' width='80' height='80' fill='none' stroke='url(%23grad)' stroke-width='3'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='45' font-weight='bold' text-anchor='middle' fill='url(%23grad)'%3EP%3C/text%3E%3C/svg%3E">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
@@ -12,538 +13,30 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-gradient: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-blue: #4facfe;
+            --accent-purple: #a855f7;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
             background: #000;
-            color: #fff;
+            color: var(--text-primary);
             overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            background: linear-gradient(135deg, #000 0%, #111 50%, #000 100%);
-            padding: 2rem;
-            overflow: hidden;
-        }
-        
-        /* Background video/gif container
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.3;
-        }
-        
-        .hero-bg video,
-        .hero-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.4) contrast(1.2);
-        } */
 
-        .hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    opacity: 1;
-}
-
-.hero-bg video,
-.hero-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.4);
-    pointer-events: none;
-    z-index: 1;
-}
-        
-.what-is {
-    padding: 8rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.section-title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 700;
-    margin-bottom: 3rem;
-    letter-spacing: -0.02em;
-}
-
-.description {
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-    line-height: 1.6;
-    color: #ccc;
-    max-width: 800px;
-    margin: 0 auto 4rem;
-    font-weight: 300;
-}
-
-.subsection-title {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    font-weight: 600;
-    margin: 4rem 0 3rem;
-    color: #fff;
-    text-align: center;
-}
-
-/* Components Section */
-.components-section {
-    margin-top: 6rem;
-}
-
-.components-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.component-card {
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    text-align: left;
-}
-
-/* Individual card colors */
-.component-card:nth-child(1) {
-    background: rgba(79, 172, 254, 0.12);
-    border: 1px solid rgba(79, 172, 254, 0.25);
-}
-
-.component-card:nth-child(2) {
-    background: rgba(255, 119, 198, 0.12);
-    border: 1px solid rgba(255, 119, 198, 0.25);
-}
-
-.component-card:nth-child(3) {
-    background: rgba(120, 200, 255, 0.12);
-    border: 1px solid rgba(120, 200, 255, 0.25);
-}
-
-.component-card:nth-child(4) {
-    background: rgba(168, 85, 247, 0.12);
-    border: 1px solid rgba(168, 85, 247, 0.25);
-}
-
-.component-card:nth-child(5) {
-    background: rgba(34, 197, 94, 0.12);
-    border: 1px solid rgba(34, 197, 94, 0.25);
-}
-
-.component-card:nth-child(6) {
-    background: rgba(251, 146, 60, 0.12);
-    border: 1px solid rgba(251, 146, 60, 0.25);
-}
-
-.component-card:nth-child(7) {
-    background: rgba(236, 72, 153, 0.12);
-    border: 1px solid rgba(236, 72, 153, 0.25);
-}
-
-.component-card:nth-child(8) {
-    background: rgba(14, 165, 233, 0.12);
-    border: 1px solid rgba(14, 165, 233, 0.25);
-}
-
-.component-card:nth-child(9) {
-    background: rgba(99, 102, 241, 0.12);
-    border: 1px solid rgba(99, 102, 241, 0.25);
-}
-
-.component-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-}
-
-.component-card:hover::before {
-    opacity: 1;
-}
-
-.component-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.12);
-}
-
-.component-icon {
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
-    display: block;
-    line-height: 1;
-}
-
-.component-card h4 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #fff;
-    line-height: 1.3;
-}
-
-.component-card p {
-    color: #ccc;
-    line-height: 1.6;
-    font-size: 1rem;
-    margin: 0;
-}
-
-/* Enhanced Hover Effects */
-.component-card:nth-child(1):hover {
-    background: rgba(79, 172, 254, 0.2);
-    border-color: rgba(79, 172, 254, 0.4);
-    box-shadow: 0 20px 40px rgba(79, 172, 254, 0.2);
-}
-
-.component-card:nth-child(2):hover {
-    background: rgba(255, 119, 198, 0.2);
-    border-color: rgba(255, 119, 198, 0.4);
-    box-shadow: 0 20px 40px rgba(255, 119, 198, 0.2);
-}
-
-.component-card:nth-child(3):hover {
-    background: rgba(120, 200, 255, 0.2);
-    border-color: rgba(120, 200, 255, 0.4);
-    box-shadow: 0 20px 40px rgba(120, 200, 255, 0.2);
-}
-
-.component-card:nth-child(4):hover {
-    background: rgba(168, 85, 247, 0.2);
-    border-color: rgba(168, 85, 247, 0.4);
-    box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
-}
-
-.component-card:nth-child(5):hover {
-    background: rgba(34, 197, 94, 0.2);
-    border-color: rgba(34, 197, 94, 0.4);
-    box-shadow: 0 20px 40px rgba(34, 197, 94, 0.2);
-}
-
-.component-card:nth-child(6):hover {
-    background: rgba(251, 146, 60, 0.2);
-    border-color: rgba(251, 146, 60, 0.4);
-    box-shadow: 0 20px 40px rgba(251, 146, 60, 0.2);
-}
-
-.component-card:nth-child(7):hover {
-    background: rgba(236, 72, 153, 0.2);
-    border-color: rgba(236, 72, 153, 0.4);
-    box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
-}
-
-.component-card:nth-child(8):hover {
-    background: rgba(14, 165, 233, 0.2);
-    border-color: rgba(14, 165, 233, 0.4);
-    box-shadow: 0 20px 40px rgba(14, 165, 233, 0.2);
-}
-
-.component-card:nth-child(9):hover {
-    background: rgba(99, 102, 241, 0.2);
-    border-color: rgba(99, 102, 241, 0.4);
-    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .components-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .component-card {
-        padding: 2rem 1.5rem;
-        text-align: center;
-    }
-    
-    .component-icon {
-        font-size: 2rem;
-    }
-    
-    .component-card h4 {
-        font-size: 1.2rem;
-    }
-    
-    .component-card p {
-        font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .component-card {
-        padding: 1.5rem 1rem;
-    }
-    
-    .component-icon {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-    }
-}
-
-        /* Alternative: CSS animated background */
-        .animated-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(120, 200, 255, 0.1) 0%, transparent 50%);
-            animation: pulse 4s ease-in-out infinite alternate;
-        }
-        
-        @keyframes pulse {
-            0% {
-                opacity: 0.5;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0.8;
-                transform: scale(1.05);
-            }
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .hero-content {
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .main-title {
-            font-size: clamp(4rem, 12vw, 8rem);
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, #888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 0.9;
-        }
-        
-        .powered-by {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            font-weight: 300;
-            color: #888;
-            margin-bottom: 3rem;
-            letter-spacing: 0.02em;
-        }
-        
-        .powered-by span {
-            color: #fff;
-            font-weight: 600;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-        
-        .btn {
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 500;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-primary {
-            background: #fff;
-            color: #000;
-        }
-        
-        .btn-primary:hover {
-            background: #f0f0f0;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255,255,255,0.2);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: #fff;
-            border: 2px solid #333;
-        }
-        
-        .btn-secondary:hover {
-            border-color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255,255,255,0.1);
-        }
-        
-        /* What is Section */
-        .what-is {
-            padding: 8rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .section-title {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 3rem;
-            letter-spacing: -0.02em;
-        }
-        
-        .description {
-            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-            line-height: 1.6;
-            color: #ccc;
-            max-width: 800px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-        
-        /* Founders Section */
-        .founders {
-            padding: 8rem 2rem;
-            background: linear-gradient(180deg, #000 0%, #111 50%, #000 100%);
-        }
-        
-        .founders-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .founders-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-        
-        .founder-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-        }
-        
-        .founder-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255,255,255,0.2);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        
-        .founder-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 2rem;
-            background: linear-gradient(135deg, #333 0%, #666 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #fff;
-            font-weight: 600;
-        }
-        
-        .founder-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .founder-title {
-            color: #888;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .founder-quote {
-            font-style: italic;
-            color: #ccc;
-            font-size: 1.1rem;
-            line-height: 1.5;
-            margin-bottom: 2rem;
-        }
-        
-        .linkedin-btn {
-            background: #0077b5;
-            color: #fff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .linkedin-btn:hover {
-            background: #005885;
-            transform: translateY(-2px);
-        }
-        
-        /* Scroll indicator */
+        /* Scroll Progress Bar */
         .scroll-indicator {
             position: fixed;
             top: 0;
@@ -553,85 +46,610 @@
             background: rgba(255,255,255,0.1);
             z-index: 1000;
         }
-        
+
         .scroll-progress {
             height: 100%;
-            background: linear-gradient(90deg, #fff 0%, #888 100%);
+            background: var(--primary-gradient);
             width: 0%;
             transition: width 0.1s ease;
         }
 
+        /* Hero Section with Video Background */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(79, 172, 254, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(0, 242, 254, 0.2) 0%, transparent 50%);
+            animation: pulseGradient 8s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes pulseGradient {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 40px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .main-title {
-    font-size: clamp(4rem, 12vw, 8rem);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 25%, #ffffff 50%, #d0d0d0 75%, #ffffff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 0.9;
-    text-shadow: 0 0 30px rgba(255,255,255,0.3);
-    filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.8));
-}
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            line-height: 0.9;
+            color: #ffffff;
+            text-shadow: 0 0 40px rgba(79, 172, 254, 0.4),
+                         0 0 80px rgba(0, 242, 254, 0.2),
+                         2px 2px 4px rgba(0,0,0,0.5);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
 
-.powered-by {
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    font-weight: 400;
-    color: #f0f0f0;
-    margin-bottom: 3rem;
-    letter-spacing: 0.02em;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-    filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.9));
-}
+        @keyframes titleGlow {
+            from {
+                text-shadow: 0 0 40px rgba(79, 172, 254, 0.4),
+                            0 0 80px rgba(0, 242, 254, 0.2),
+                            2px 2px 4px rgba(0,0,0,0.5);
+            }
+            to {
+                text-shadow: 0 0 50px rgba(79, 172, 254, 0.6),
+                            0 0 100px rgba(0, 242, 254, 0.3),
+                            2px 2px 4px rgba(0,0,0,0.5);
+            }
+        }
 
-.powered-by span {
-    color: #fff;
-    font-weight: 700;
-    text-shadow: 0 0 20px rgba(255,255,255,0.4);
-}
+        .hero-tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            line-height: 1.5;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
 
-.btn-primary {
-    background: #fff;
-    color: #000;
-    box-shadow: 0 4px 15px rgba(255,255,255,0.3);
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
-}
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
 
-.btn-primary:hover {
-    background: #f0f0f0;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255,255,255,0.4);
-}
+        .btn {
+            padding: 18px 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-.btn-secondary {
-    background: rgba(255,255,255,0.1);
-    color: #fff;
-    border: 2px solid rgba(255,255,255,0.4);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.95);
+            color: #000;
+            border: none;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
 
-.btn-secondary:hover {
-    border-color: rgba(255,255,255,0.8);
-    background: rgba(255,255,255,0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255,255,255,0.2);
-}
+        .btn-primary:hover {
+            background: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+        }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.2);
-    pointer-events: none;
-    z-index: 1;
-}
-        
-        /* Responsive */
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator-arrow {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .scroll-indicator-arrow svg {
+            width: 30px;
+            height: 30px;
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.8);
+            stroke-width: 2;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        /* What Is Section */
+        .what-is {
+            padding: 120px 20px;
+            background: var(--dark-gradient);
+            position: relative;
+        }
+
+        .what-is::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(79, 172, 254, 0.5), transparent);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 80px;
+            font-weight: 300;
+        }
+
+        /* Description Blocks */
+        .description-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto 80px;
+        }
+
+        .description-block {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .description-block::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .description-block:hover::before {
+            opacity: 1;
+        }
+
+        .description-block:hover {
+            transform: translateY(-5px);
+            border-color: rgba(79, 172, 254, 0.2);
+            box-shadow: 0 20px 40px rgba(79, 172, 254, 0.1);
+        }
+
+        .description-text {
+            font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin: 0;
+            font-weight: 300;
+            text-align: left;
+        }
+
+        /* Highlight Styles */
+        .highlight {
+            font-weight: 600;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: default;
+        }
+
+        .highlight.blue { background: rgba(79, 172, 254, 0.2); color: #4facfe; border: 1px solid rgba(79, 172, 254, 0.3); }
+        .highlight.pink { background: rgba(255, 119, 198, 0.2); color: #ff77c6; border: 1px solid rgba(255, 119, 198, 0.3); }
+        .highlight.purple { background: rgba(168, 85, 247, 0.2); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .highlight.green { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .highlight.orange { background: rgba(251, 146, 60, 0.2); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.3); }
+        .highlight.cyan { background: rgba(34, 211, 238, 0.2); color: #22d3ee; border: 1px solid rgba(34, 211, 238, 0.3); }
+        .highlight.magenta { background: rgba(236, 72, 153, 0.2); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.3); }
+        .highlight.yellow { background: rgba(234, 179, 8, 0.2); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); }
+        .highlight.red { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+        .tech-highlight {
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+            color: #b4d4ff;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(79, 172, 254, 0.2);
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.95em;
+        }
+
+        .quote {
+            background: rgba(255, 255, 255, 0.1);
+            color: #f0f0f0;
+            font-style: italic;
+            padding: 0.3rem 0.6rem;
+            border-radius: 8px;
+            border-left: 3px solid #4facfe;
+            font-weight: 500;
+        }
+
+        .feature-tag {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            font-weight: 500;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            white-space: nowrap;
+        }
+
+        .platform-tag {
+            background: rgba(251, 146, 60, 0.15);
+            color: #fbbf24;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.85em;
+            border: 1px solid rgba(251, 146, 60, 0.2);
+            white-space: nowrap;
+        }
+
+        .final-highlight {
+            background: var(--primary-gradient);
+            color: #000;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+        }
+
+        /* Components Grid */
+        .components-section {
+            margin-top: 80px;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .component-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .component-card:nth-child(1) { background: rgba(79, 172, 254, 0.08); border-color: rgba(79, 172, 254, 0.2); }
+        .component-card:nth-child(2) { background: rgba(255, 119, 198, 0.08); border-color: rgba(255, 119, 198, 0.2); }
+        .component-card:nth-child(3) { background: rgba(120, 200, 255, 0.08); border-color: rgba(120, 200, 255, 0.2); }
+        .component-card:nth-child(4) { background: rgba(168, 85, 247, 0.08); border-color: rgba(168, 85, 247, 0.2); }
+        .component-card:nth-child(5) { background: rgba(34, 197, 94, 0.08); border-color: rgba(34, 197, 94, 0.2); }
+        .component-card:nth-child(6) { background: rgba(251, 146, 60, 0.08); border-color: rgba(251, 146, 60, 0.2); }
+        .component-card:nth-child(7) { background: rgba(236, 72, 153, 0.08); border-color: rgba(236, 72, 153, 0.2); }
+        .component-card:nth-child(8) { background: rgba(14, 165, 233, 0.08); border-color: rgba(14, 165, 233, 0.2); }
+        .component-card:nth-child(9) { background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.2); }
+
+        .component-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .component-card:hover::before {
+            opacity: 1;
+        }
+
+        .component-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .component-card:nth-child(1):hover { background: rgba(79, 172, 254, 0.15); border-color: rgba(79, 172, 254, 0.4); }
+        .component-card:nth-child(2):hover { background: rgba(255, 119, 198, 0.15); border-color: rgba(255, 119, 198, 0.4); }
+        .component-card:nth-child(3):hover { background: rgba(120, 200, 255, 0.15); border-color: rgba(120, 200, 255, 0.4); }
+        .component-card:nth-child(4):hover { background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.4); }
+        .component-card:nth-child(5):hover { background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.4); }
+        .component-card:nth-child(6):hover { background: rgba(251, 146, 60, 0.15); border-color: rgba(251, 146, 60, 0.4); }
+        .component-card:nth-child(7):hover { background: rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.4); }
+        .component-card:nth-child(8):hover { background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.4); }
+        .component-card:nth-child(9):hover { background: rgba(99, 102, 241, 0.15); border-color: rgba(99, 102, 241, 0.4); }
+
+        .component-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            line-height: 1;
+        }
+
+        .component-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .component-card p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Founders Section */
+        .founders {
+            padding: 120px 20px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 100%);
+            position: relative;
+        }
+
+        .founders::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent);
+        }
+
+        .founders-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .founder-card {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            flex: 0 1 350px;
+            backdrop-filter: blur(10px);
+        }
+
+        .founder-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(79, 172, 254, 0.3);
+            box-shadow: 0 20px 40px rgba(79, 172, 254, 0.1);
+        }
+
+        .founder-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            border: 3px solid rgba(79, 172, 254, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .founder-card:hover .founder-avatar {
+            border-color: rgba(79, 172, 254, 0.6);
+            transform: scale(1.05);
+        }
+
+        .founder-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .founder-title {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .founder-quote {
+            font-style: italic;
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .linkedin-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(79, 172, 254, 0.1);
+            border: 1px solid rgba(79, 172, 254, 0.3);
+            border-radius: 25px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .linkedin-btn:hover {
+            background: rgba(79, 172, 254, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 172, 254, 0.2);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 20px;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 30px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-large {
+            padding: 25px 70px;
+            font-size: 1.3rem;
+            background: var(--primary-gradient);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            box-shadow: 0 20px 50px rgba(79, 172, 254, 0.3);
+        }
+
+        .cta-large:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(79, 172, 254, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 20px;
+            background: #000;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .components-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .cta-buttons {
                 flex-direction: column;
@@ -642,275 +660,59 @@
                 width: 100%;
                 max-width: 280px;
             }
-            
-            .founders-grid {
+
+            .components-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .founders-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .founder-card {
+                max-width: 400px;
+            }
+
+            .main-title {
+                font-size: 4rem;
+            }
+
+            .description-block {
+                padding: 2rem 1.5rem;
             }
         }
 
+        @media (max-width: 480px) {
+            .component-card {
+                padding: 2rem 1.5rem;
+            }
 
-        /* Add this to your existing CSS */
-.what-is {
-    padding: 8rem 2rem 10rem 2rem; /* Increased bottom padding from 8rem to 10rem */
-    max-width: 1400px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.components-section {
-    margin-top: 6rem;
-    margin-bottom: 4rem; /* Add bottom margin */
-}
-
-.components-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-    padding-bottom: 2rem; /* Add padding to account for hover animations */
-}
-
-/* Also ensure the body has enough space */
-body {
-    padding-bottom: 2rem; /* Add this if not already present */
-}
-
-
-
-/* what is paragraph section */
-
-.description-section {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.section-title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 700;
-    margin-bottom: 3rem;
-    letter-spacing: -0.02em;
-    text-align: center;
-    background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.description-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.description-block {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 2.5rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.description-block::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.description-block:hover::before {
-    opacity: 1;
-}
-
-.description-block:hover {
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.description-text {
-    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
-    line-height: 1.8;
-    color: #e0e0e0;
-    margin: 0;
-    font-weight: 300;
-    text-align: left;
-}
-
-/* Highlight Styles */
-.highlight {
-    font-weight: 600;
-    padding: 0.2rem 0.4rem;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    position: relative;
-    cursor: default;
-}
-
-.highlight:hover {
-    transform: scale(1.02);
-}
-
-.highlight.blue {
-    background: rgba(79, 172, 254, 0.2);
-    color: #4facfe;
-    border: 1px solid rgba(79, 172, 254, 0.3);
-}
-
-.highlight.pink {
-    background: rgba(255, 119, 198, 0.2);
-    color: #ff77c6;
-    border: 1px solid rgba(255, 119, 198, 0.3);
-}
-
-.highlight.purple {
-    background: rgba(168, 85, 247, 0.2);
-    color: #a855f7;
-    border: 1px solid rgba(168, 85, 247, 0.3);
-}
-
-.highlight.green {
-    background: rgba(34, 197, 94, 0.2);
-    color: #22c55e;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-}
-
-.highlight.orange {
-    background: rgba(251, 146, 60, 0.2);
-    color: #fb923c;
-    border: 1px solid rgba(251, 146, 60, 0.3);
-}
-
-.highlight.cyan {
-    background: rgba(34, 211, 238, 0.2);
-    color: #22d3ee;
-    border: 1px solid rgba(34, 211, 238, 0.3);
-}
-
-.highlight.magenta {
-    background: rgba(236, 72, 153, 0.2);
-    color: #ec4899;
-    border: 1px solid rgba(236, 72, 153, 0.3);
-}
-
-.highlight.yellow {
-    background: rgba(234, 179, 8, 0.2);
-    color: #eab308;
-    border: 1px solid rgba(234, 179, 8, 0.3);
-}
-
-.highlight.red {
-    background: rgba(239, 68, 68, 0.2);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-/* Tech Highlights */
-.tech-highlight {
-    background: linear-gradient(135deg, rgba(79, 172, 254, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
-    color: #b4d4ff;
-    font-weight: 600;
-    padding: 0.2rem 0.5rem;
-    border-radius: 8px;
-    border: 1px solid rgba(79, 172, 254, 0.2);
-    transition: all 0.3s ease;
-    font-family: 'Monaco', 'Menlo', monospace;
-    font-size: 0.95em;
-}
-
-.tech-highlight:hover {
-    background: linear-gradient(135deg, rgba(79, 172, 254, 0.25) 0%, rgba(168, 85, 247, 0.25) 100%);
-    transform: scale(1.02);
-}
-
-/* Quote Style */
-.quote {
-    background: rgba(255, 255, 255, 0.1);
-    color: #f0f0f0;
-    font-style: italic;
-    padding: 0.3rem 0.6rem;
-    border-radius: 8px;
-    border-left: 3px solid #4facfe;
-    font-weight: 500;
-}
-
-/* Feature Tags */
-.feature-tag {
-    background: rgba(34, 197, 94, 0.15);
-    color: #4ade80;
-    font-weight: 500;
-    padding: 0.2rem 0.5rem;
-    border-radius: 20px;
-    font-size: 0.9em;
-    border: 1px solid rgba(34, 197, 94, 0.2);
-    white-space: nowrap;
-}
-
-/* Platform Tags */
-.platform-tag {
-    background: rgba(251, 146, 60, 0.15);
-    color: #fbbf24;
-    font-weight: 600;
-    padding: 0.2rem 0.5rem;
-    border-radius: 15px;
-    font-size: 0.85em;
-    border: 1px solid rgba(251, 146, 60, 0.2);
-    white-space: nowrap;
-}
-
-/* Final Highlight */
-.final-highlight {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: #000;
-    font-weight: 700;
-    padding: 0.3rem 0.8rem;
-    border-radius: 10px;
-    text-shadow: none;
-    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
-    transition: all 0.3s ease;
-}
-
-.final-highlight:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
-}
+            .description-block {
+                padding: 1.5rem 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Scroll Progress -->
+    <!-- Scroll Progress Bar -->
     <div class="scroll-indicator">
         <div class="scroll-progress" id="scroll-progress"></div>
     </div>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <!-- Option 1: Video Background (uncomment to use) -->
-        <div class="hero-bg">
-            <video autoplay muted loop>
-                <source src="travel.mp4" type="video/mp4">
-            </video>
-        </div>
-        
-        <!-- Option 2: GIF Background (uncomment to use) -->
-        <!-- <div class="hero-bg">
-            <img src="your-background.gif" alt="Background Animation">
-        </div> -->
-        
-        <!-- Option 3: CSS Animated Background (currently active) -->
-        <div class="animated-bg"></div>
-        
+        <video class="hero-video" autoplay loop muted>
+            <source src="assets/travel.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="main-title">PROJECT<br>PARADOX</h1>
-            <p class="powered-by">Multi-Agent LLM framework for Dynamic Planning, Memory-Driven Conversations, and Immersive World Interactions</p>
+            <p class="hero-tagline">
+                Multi-Agent LLM framework for Dynamic Planning, Memory-Driven Conversations, and Immersive World Interactions
+            </p>
             <div class="cta-buttons">
                 <a href="#demo" class="btn btn-primary">
                     <span>Watch Demo</span>
@@ -922,172 +724,216 @@ body {
                 </a>
             </div>
         </div>
+        <div class="scroll-indicator-arrow" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">
+            <svg viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
     </section>
 
+    <!-- What Is Section -->
     <section class="what-is" id="about">
-    <div class="description-section">
-    <h2 class="section-title">What is Project Paradox?</h2>
-    
-    <div class="description-content">
-        <div class="description-block">
-            <p class="description-text">
-                Project Paradox is a <span class="highlight blue">cutting-edge AI framework</span> that brings game worlds to life with 
-                <span class="highlight pink">intelligent, emotionally-aware, and memory-driven NPCs</span>. At its core, it powers 
-                <span class="highlight purple">multi-agent interactions</span> where every character remembers past events, understands their environment, 
-                forms beliefs and emotions, and plans autonomously. These agents don't just react—they 
-                <span class="highlight green">initiate conversations, evolve based on context, and behave with intent</span>. 
-                Whether it's gossiping about last night's tavern fight or navigating a murder mystery, 
-                each agent plays an <span class="highlight orange">active role in shaping the world's narrative</span>.
-            </p>
+        <div class="container">
+            <h2 class="section-title">What is Project Paradox?</h2>
+            
+            <div class="description-content">
+                <div class="description-block">
+                    <p class="description-text">
+                        Project Paradox is a <span class="highlight blue">cutting-edge AI framework</span> that brings game worlds to life with 
+                        <span class="highlight pink">intelligent, emotionally-aware, and memory-driven NPCs</span>. At its core, it powers 
+                        <span class="highlight purple">multi-agent interactions</span> where every character remembers past events, understands their environment, 
+                        forms beliefs and emotions, and plans autonomously. These agents don't just react—they 
+                        <span class="highlight green">initiate conversations, evolve based on context, and behave with intent</span>. 
+                        Whether it's gossiping about last night's tavern fight or navigating a murder mystery, 
+                        each agent plays an <span class="highlight orange">active role in shaping the world's narrative</span>.
+                    </p>
+                </div>
+                
+                <div class="description-block">
+                    <p class="description-text">
+                        Built on a <span class="highlight cyan">modular architecture</span>, Project Paradox features key subsystems like the 
+                        <span class="tech-highlight">Advanced Memory Engine with RAG recall</span>, a 
+                        <span class="tech-highlight">Spatial-Aware Context Engine</span>, an 
+                        <span class="tech-highlight">Emotion-Belief-Personality Framework</span>, and an 
+                        <span class="tech-highlight">Autonomous Planning System</span>. It also includes powerful narrative tools like the 
+                        <span class="highlight magenta">Dynamic Story Trigger System</span>, where a single input—like 
+                        <span class="quote">"It's Toby's birthday"</span>—ripples across the village, influencing how all agents behave. 
+                        The framework supports <span class="feature-tag">real-time updates</span>, 
+                        <span class="feature-tag">environment feedback</span>, and seamless integration with 
+                        <span class="platform-tag">Unity</span>, <span class="platform-tag">Unreal</span>, <span class="platform-tag">Godot</span>, 
+                        mobile/VR platforms, and both local and cloud-based LLMs.
+                    </p>
+                </div>
+                
+                <div class="description-block">
+                    <p class="description-text">
+                        Whether you're designing <span class="highlight yellow">cozy storytelling experiences</span> or 
+                        <span class="highlight red">complex social deduction gameplay</span>, Project Paradox gives you 
+                        <span class="highlight blue">full control over how characters act, think, and respond</span>. 
+                        With just a few prompts, you can script immersive events, customize world behavior, or even build your own 
+                        <span class="highlight purple">genre-defining game</span>. It's not just AI for games—it's 
+                        <span class="final-highlight">AI that becomes the game</span>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Components Section -->
+            <div class="components-section">
+                <h3 class="section-title">Core Components</h3>
+                <div class="components-grid">
+                    <!-- Narrative Tools -->
+                    <div class="component-card">
+                        <div class="component-icon">💬🪶⚙️</div>
+                        <h4>Dynamic Story Trigger System</h4>
+                        <p>AI-powered narrative engine that adapts storylines in real-time based on player choices and environmental factors.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🧠📋</div>
+                        <h4>Universal Game Prompt Framework</h4>
+                        <p>Intelligent system that generates contextually relevant prompts and scenarios for unlimited gameplay possibilities.</p>
+                    </div>
+                    
+                    <!-- Core Architecture Components -->
+                    <div class="component-card">
+                        <div class="component-icon">🧠💾</div>
+                        <h4>Advanced Memory Engine</h4>
+                        <p>RAG-based recall system that maintains context and continuity across extended gameplay sessions.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">💬🔄</div>
+                        <h4>Conversation Engine</h4>
+                        <p>Natural language processing system for seamless player-AI communication and dialogue generation.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🎯🔍</div>
+                        <h4>Context-Aware Intent Engine</h4>
+                        <p>Advanced behavioral analysis system that understands player motivations and adapts accordingly.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">❤️🎭🧠</div>
+                        <h4>Emotion-Belief-Personality Framework</h4>
+                        <p>Sophisticated character development system that creates authentic, evolving personalities for NPCs.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🗺️📍</div>
+                        <h4>Spatial-Aware Context Engine</h4>
+                        <p>Environmental understanding system that tracks locations, objects, and spatial relationships.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">🌍🔄</div>
+                        <h4>Interactive Environment</h4>
+                        <p>Dynamic world generation system that creates responsive, living game environments.</p>
+                    </div>
+                    
+                    <div class="component-card">
+                        <div class="component-icon">📊🎯</div>
+                        <h4>Autonomous Planning Engine</h4>
+                        <p>Strategic decision-making system that enables complex AI behavior and long-term planning.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="description-block">
-            <p class="description-text">
-                Built on a <span class="highlight cyan">modular architecture</span>, Project Paradox features key subsystems like the 
-                <span class="tech-highlight">Advanced Memory Engine with RAG recall</span>, a 
-                <span class="tech-highlight">Spatial-Aware Context Engine</span>, an 
-                <span class="tech-highlight">Emotion-Belief-Personality Framework</span>, and an 
-                <span class="tech-highlight">Autonomous Planning System</span>. It also includes powerful narrative tools like the 
-                <span class="highlight magenta">Dynamic Story Trigger System</span>, where a single input—like 
-                <span class="quote">"It's Toby's birthday"</span>—ripples across the village, influencing how all agents behave. 
-                The framework supports <span class="feature-tag">real-time updates</span>, 
-                <span class="feature-tag">environment feedback</span>, and seamless integration with 
-                <span class="platform-tag">Unity</span>, <span class="platform-tag">Unreal</span>, <span class="platform-tag">Godot</span>, 
-                mobile/VR platforms, and both local and cloud-based LLMs.
-            </p>
-        </div>
-        
-        <div class="description-block">
-            <p class="description-text">
-                Whether you're designing <span class="highlight yellow">cozy storytelling experiences</span> or 
-                <span class="highlight red">complex social deduction gameplay</span>, Project Paradox gives you 
-                <span class="highlight blue">full control over how characters act, think, and respond</span>. 
-                With just a few prompts, you can script immersive events, customize world behavior, or even build your own 
-                <span class="highlight purple">genre-defining game</span>. It's not just AI for games—it's 
-                <span class="final-highlight">AI that becomes the game</span>.
-            </p>
-        </div>
-    </div>
-</div>
-    
-    <!-- All Components Grid -->
-    <div class="components-section">
-        <h3 class="subsection-title">Core Components</h3>
-        <div class="components-grid">
-            <!-- Narrative Tools -->
-            <div class="component-card">
-                <div class="component-icon">💬🪶⚙️</div>
-                <h4>Dynamic Story Trigger System</h4>
-                <p>AI-powered narrative engine that adapts storylines in real-time based on player choices and environmental factors.</p>
-            </div>
-            
-            <div class="component-card">
-                <div class="component-icon">🧠📋</div>
-                <h4>Universal Game Prompt Framework</h4>
-                <p>Intelligent system that generates contextually relevant prompts and scenarios for unlimited gameplay possibilities.</p>
-            </div>
-            
-            <!-- Core Architecture Components -->
-            <div class="component-card">
-                <div class="component-icon">🧠💾</div>
-                <h4>Advanced Memory Engine</h4>
-                <p>RAG-based recall system that maintains context and continuity across extended gameplay sessions.</p>
-            </div>
-            
-            <div class="component-card">
-                <div class="component-icon">💬🔄</div>
-                <h4>Conversation Engine</h4>
-                <p>Natural language processing system for seamless player-AI communication and dialogue generation.</p>
-            </div>
-            
-            <div class="component-card">
-                <div class="component-icon"><img src="images/intent.png" alt="intent_image" width="30%"></div>
-                <h4>Context-Aware Intent Engine</h4>
-                <p>Advanced behavioral analysis system that understands player motivations and adapts accordingly.</p>
-            </div>
-            
-            <div class="component-card">
-                <div class="component-icon">❤️🎭🧠</div>
-                <h4>Emotion-Belief-Personality Framework</h4>
-                <p>Sophisticated character development system that creates authentic, evolving personalities for NPCs.</p>
-            </div>
-            
-            <div class="component-card">
-                <div class="component-icon">🗺️📍</div>
-                <h4>Spatial-Aware Context Engine</h4>
-                <p>Environmental understanding system that tracks locations, objects, and spatial relationships.</p>
-            </div>
-            
-            <div class="component-card">
-                <div class="component-icon">🌍🔄</div>
-                <h4>Interactive Environment</h4>
-                <p>Dynamic world generation system that creates responsive, living game environments.</p>
-            </div>
-            
-            <div class="component-card">
-                <div class="component-icon">📊🎯</div>
-                <h4>Autonomous Planning Engine</h4>
-                <p>Strategic decision-making system that enables complex AI behavior and long-term planning.</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Founders Section -->
     <section class="founders" id="founders">
-        <div class="founders-container">
+        <div class="container">
             <h2 class="section-title">Developed by</h2>
             <div class="founders-grid">
                 <div class="founder-card">
-                    <div class="founder-image">AJ</div>
-                    <h3 class="founder-name">Alex Johnson</h3>
-                    <p class="founder-title">Lead Game Architect</p>
+                    <div class="founder-avatar">
+                        <img src="assets/Arunachalam_Img.jpeg" alt="Arunachalam">
+                    </div>
+                    <h3 class="founder-name">Arunachalam Manikandan</h3>
+                    <p class="founder-title">AI and Backend Engineer</p>
                     <p class="founder-quote">"Reality is just the baseline—everything else is possibility waiting to be coded."</p>
-                    <a href="#" class="linkedin-btn">
-                        <span>Connect</span>
-                        <span>in</span>
+                    <a href="https://www.linkedin.com/in/arunachalam-manikandan/" class="linkedin-btn">
+                        Connect on LinkedIn
                     </a>
                 </div>
+                
                 <div class="founder-card">
-                    <div class="founder-image">SC</div>
-                    <h3 class="founder-name">Sarah Chen</h3>
-                    <p class="founder-title">Creative Director</p>
-                    <p class="founder-quote">"The best games don't just entertain—they transform how we see the world."</p>
-                    <a href="#" class="linkedin-btn">
-                        <span>Connect</span>
-                        <span>in</span>
+                    <div class="founder-avatar">
+                        <img src="assets/Erina_Img.jpeg" alt="Erina">
+                    </div>
+                    <h3 class="founder-name">Erina Karati</h3>
+                    <p class="founder-title">AI and Frontend Engineer</p>
+                    <p class="founder-quote">"The best games are not defined by the latest technology alone, but by how much fun they are to play."</p>
+                    <a href="https://www.linkedin.com/in/ekarati/" class="linkedin-btn">
+                        Connect on LinkedIn
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Build the Future of Gaming?</h2>
+            <p>Transform your game with AI that thinks, remembers, and evolves.</p>
+            <a href="#" class="btn cta-large">Start Building with Paradox</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Project Paradox. Revolutionizing gaming with intelligent AI.</p>
+    </footer>
+
     <script>
-        // Parallax and scroll effects
+        // Scroll Progress Bar
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            
-            // Hero parallax
-            const hero = document.getElementById('hero');
-            if (hero) {
-                hero.style.transform = `translateY(${rate}px)`;
-            }
-            
-            // Scroll progress
-            const scrollProgress = document.getElementById('scroll-progress');
             const totalHeight = document.body.scrollHeight - window.innerHeight;
             const progress = (scrolled / totalHeight) * 100;
-            scrollProgress.style.width = progress + '%';
+            document.getElementById('scroll-progress').style.width = progress + '%';
             
-            // Parallax for sections
-            const sections = document.querySelectorAll('.what-is, .founders');
-            sections.forEach((section, index) => {
-                const rect = section.getBoundingClientRect();
-                const speed = 0.1 * (index + 1);
-                const yPos = -(rect.top * speed);
-                section.style.transform = `translateY(${yPos}px)`;
+            // Parallax effect for hero
+            const hero = document.getElementById('hero');
+            if (hero) {
+                const heroVideo = hero.querySelector('.hero-video');
+                if (heroVideo) {
+                    heroVideo.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            }
+        });
+
+        // Set video playback rate
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.querySelector('.hero-video');
+            if (video) {
+                video.playbackRate = 0.85;
+            }
+        });
+
+        // Smooth reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.component-card, .founder-card, .description-block').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.8s ease';
+            observer.observe(card);
         });
 
         // Smooth scrolling for anchor links
@@ -1104,7 +950,46 @@ body {
             });
         });
 
-        // Add loading animation
+        // Add hover effects to buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.background = 'rgba(255,255,255,0.5)';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.borderRadius = '50%';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    width: 300px;
+                    height: 300px;
+                    margin-left: -150px;
+                    margin-top: -150px;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Loading animation
         window.addEventListener('load', () => {
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 1s ease';
