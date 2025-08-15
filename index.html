@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Paradox - Multi-Agent LLM Framework</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234facfe'/%3E%3Cstop offset='100%25' style='stop-color:%2300f2fe'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='10' y='10' width='80' height='80' fill='none' stroke='url(%23grad)' stroke-width='3'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='45' font-weight='bold' text-anchor='middle' fill='url(%23grad)'%3EP%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234facfe'/%3E%3Cstop offset='100%25' style='stop-color:%2300f2fe'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='10' y='10' width='80' height='80' fill='none' stroke='url(%23grad)' stroke-width='3'/%3E%3Ctext x='50' y='65' font-family='Arial, sans-serif' font-size='45' font-weight='bold' text-anchor='middle' fill='url(%23grad)'%3EP%3C/text%3E%3C/svg%3E">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -43,7 +45,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             z-index: 1000;
         }
 
@@ -80,7 +82,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
             z-index: 1;
         }
 
@@ -92,14 +94,21 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(circle at 20% 50%, rgba(79, 172, 254, 0.2) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 50%, rgba(0, 242, 254, 0.2) 0%, transparent 50%);
+                radial-gradient(circle at 80% 50%, rgba(0, 242, 254, 0.2) 0%, transparent 50%);
             animation: pulseGradient 8s ease-in-out infinite;
             z-index: 2;
         }
 
         @keyframes pulseGradient {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
         }
 
         .hero-content {
@@ -116,6 +125,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -130,21 +140,22 @@
             line-height: 0.9;
             color: #ffffff;
             text-shadow: 0 0 40px rgba(79, 172, 254, 0.4),
-                         0 0 80px rgba(0, 242, 254, 0.2),
-                         2px 2px 4px rgba(0,0,0,0.5);
+                0 0 80px rgba(0, 242, 254, 0.2),
+                2px 2px 4px rgba(0, 0, 0, 0.5);
             animation: titleGlow 3s ease-in-out infinite alternate;
         }
 
         @keyframes titleGlow {
             from {
                 text-shadow: 0 0 40px rgba(79, 172, 254, 0.4),
-                            0 0 80px rgba(0, 242, 254, 0.2),
-                            2px 2px 4px rgba(0,0,0,0.5);
+                    0 0 80px rgba(0, 242, 254, 0.2),
+                    2px 2px 4px rgba(0, 0, 0, 0.5);
             }
+
             to {
                 text-shadow: 0 0 50px rgba(79, 172, 254, 0.6),
-                            0 0 100px rgba(0, 242, 254, 0.3),
-                            2px 2px 4px rgba(0,0,0,0.5);
+                    0 0 100px rgba(0, 242, 254, 0.3),
+                    2px 2px 4px rgba(0, 0, 0, 0.5);
             }
         }
 
@@ -155,7 +166,7 @@
             margin: 0 auto 3rem;
             line-height: 1.5;
             font-weight: 300;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .cta-buttons {
@@ -219,9 +230,22 @@
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
         }
 
         .scroll-indicator-arrow svg {
@@ -230,7 +254,7 @@
             fill: none;
             stroke: rgba(255, 255, 255, 0.8);
             stroke-width: 2;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
         /* What Is Section */
@@ -247,9 +271,11 @@
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
@@ -364,15 +390,59 @@
             cursor: default;
         }
 
-        .highlight.blue { background: rgba(79, 172, 254, 0.2); color: #4facfe; border: 1px solid rgba(79, 172, 254, 0.3); }
-        .highlight.pink { background: rgba(255, 119, 198, 0.2); color: #ff77c6; border: 1px solid rgba(255, 119, 198, 0.3); }
-        .highlight.purple { background: rgba(168, 85, 247, 0.2); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
-        .highlight.green { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
-        .highlight.orange { background: rgba(251, 146, 60, 0.2); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.3); }
-        .highlight.cyan { background: rgba(34, 211, 238, 0.2); color: #22d3ee; border: 1px solid rgba(34, 211, 238, 0.3); }
-        .highlight.magenta { background: rgba(236, 72, 153, 0.2); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.3); }
-        .highlight.yellow { background: rgba(234, 179, 8, 0.2); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.3); }
-        .highlight.red { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .highlight.blue {
+            background: rgba(79, 172, 254, 0.2);
+            color: #4facfe;
+            border: 1px solid rgba(79, 172, 254, 0.3);
+        }
+
+        .highlight.pink {
+            background: rgba(255, 119, 198, 0.2);
+            color: #ff77c6;
+            border: 1px solid rgba(255, 119, 198, 0.3);
+        }
+
+        .highlight.purple {
+            background: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .highlight.green {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .highlight.orange {
+            background: rgba(251, 146, 60, 0.2);
+            color: #fb923c;
+            border: 1px solid rgba(251, 146, 60, 0.3);
+        }
+
+        .highlight.cyan {
+            background: rgba(34, 211, 238, 0.2);
+            color: #22d3ee;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+        }
+
+        .highlight.magenta {
+            background: rgba(236, 72, 153, 0.2);
+            color: #ec4899;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+
+        .highlight.yellow {
+            background: rgba(234, 179, 8, 0.2);
+            color: #eab308;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+
+        .highlight.red {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
 
         .tech-highlight {
             background: linear-gradient(135deg, rgba(79, 172, 254, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
@@ -450,15 +520,50 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .component-card:nth-child(1) { background: rgba(79, 172, 254, 0.08); border-color: rgba(79, 172, 254, 0.2); }
-        .component-card:nth-child(2) { background: rgba(255, 119, 198, 0.08); border-color: rgba(255, 119, 198, 0.2); }
-        .component-card:nth-child(3) { background: rgba(120, 200, 255, 0.08); border-color: rgba(120, 200, 255, 0.2); }
-        .component-card:nth-child(4) { background: rgba(168, 85, 247, 0.08); border-color: rgba(168, 85, 247, 0.2); }
-        .component-card:nth-child(5) { background: rgba(34, 197, 94, 0.08); border-color: rgba(34, 197, 94, 0.2); }
-        .component-card:nth-child(6) { background: rgba(251, 146, 60, 0.08); border-color: rgba(251, 146, 60, 0.2); }
-        .component-card:nth-child(7) { background: rgba(236, 72, 153, 0.08); border-color: rgba(236, 72, 153, 0.2); }
-        .component-card:nth-child(8) { background: rgba(14, 165, 233, 0.08); border-color: rgba(14, 165, 233, 0.2); }
-        .component-card:nth-child(9) { background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.2); }
+        .component-card:nth-child(1) {
+            background: rgba(79, 172, 254, 0.08);
+            border-color: rgba(79, 172, 254, 0.2);
+        }
+
+        .component-card:nth-child(2) {
+            background: rgba(255, 119, 198, 0.08);
+            border-color: rgba(255, 119, 198, 0.2);
+        }
+
+        .component-card:nth-child(3) {
+            background: rgba(120, 200, 255, 0.08);
+            border-color: rgba(120, 200, 255, 0.2);
+        }
+
+        .component-card:nth-child(4) {
+            background: rgba(168, 85, 247, 0.08);
+            border-color: rgba(168, 85, 247, 0.2);
+        }
+
+        .component-card:nth-child(5) {
+            background: rgba(34, 197, 94, 0.08);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        .component-card:nth-child(6) {
+            background: rgba(251, 146, 60, 0.08);
+            border-color: rgba(251, 146, 60, 0.2);
+        }
+
+        .component-card:nth-child(7) {
+            background: rgba(236, 72, 153, 0.08);
+            border-color: rgba(236, 72, 153, 0.2);
+        }
+
+        .component-card:nth-child(8) {
+            background: rgba(14, 165, 233, 0.08);
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+
+        .component-card:nth-child(9) {
+            background: rgba(99, 102, 241, 0.08);
+            border-color: rgba(99, 102, 241, 0.2);
+        }
 
         .component-card::before {
             content: '';
@@ -467,7 +572,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
@@ -481,15 +586,50 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .component-card:nth-child(1):hover { background: rgba(79, 172, 254, 0.15); border-color: rgba(79, 172, 254, 0.4); }
-        .component-card:nth-child(2):hover { background: rgba(255, 119, 198, 0.15); border-color: rgba(255, 119, 198, 0.4); }
-        .component-card:nth-child(3):hover { background: rgba(120, 200, 255, 0.15); border-color: rgba(120, 200, 255, 0.4); }
-        .component-card:nth-child(4):hover { background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.4); }
-        .component-card:nth-child(5):hover { background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.4); }
-        .component-card:nth-child(6):hover { background: rgba(251, 146, 60, 0.15); border-color: rgba(251, 146, 60, 0.4); }
-        .component-card:nth-child(7):hover { background: rgba(236, 72, 153, 0.15); border-color: rgba(236, 72, 153, 0.4); }
-        .component-card:nth-child(8):hover { background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.4); }
-        .component-card:nth-child(9):hover { background: rgba(99, 102, 241, 0.15); border-color: rgba(99, 102, 241, 0.4); }
+        .component-card:nth-child(1):hover {
+            background: rgba(79, 172, 254, 0.15);
+            border-color: rgba(79, 172, 254, 0.4);
+        }
+
+        .component-card:nth-child(2):hover {
+            background: rgba(255, 119, 198, 0.15);
+            border-color: rgba(255, 119, 198, 0.4);
+        }
+
+        .component-card:nth-child(3):hover {
+            background: rgba(120, 200, 255, 0.15);
+            border-color: rgba(120, 200, 255, 0.4);
+        }
+
+        .component-card:nth-child(4):hover {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: rgba(168, 85, 247, 0.4);
+        }
+
+        .component-card:nth-child(5):hover {
+            background: rgba(34, 197, 94, 0.15);
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
+        .component-card:nth-child(6):hover {
+            background: rgba(251, 146, 60, 0.15);
+            border-color: rgba(251, 146, 60, 0.4);
+        }
+
+        .component-card:nth-child(7):hover {
+            background: rgba(236, 72, 153, 0.15);
+            border-color: rgba(236, 72, 153, 0.4);
+        }
+
+        .component-card:nth-child(8):hover {
+            background: rgba(14, 165, 233, 0.15);
+            border-color: rgba(14, 165, 233, 0.4);
+        }
+
+        .component-card:nth-child(9):hover {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
 
         .component-icon {
             font-size: 2.5rem;
@@ -659,6 +799,145 @@
             box-shadow: 0 25px 60px rgba(79, 172, 254, 0.4);
         }
 
+        /* Watch Demo Section */
+        .watch-demo {
+            padding: 120px 20px;
+            background: linear-gradient(135deg, #000 0%, #0a0a0a 50%, #000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .watch-demo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(79, 172, 254, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            animation: demoGradientPulse 6s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes demoGradientPulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .watch-demo .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(79, 172, 254, 0.3),
+                0 10px 30px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(168, 85, 247, 0.1));
+            border: 2px solid rgba(79, 172, 254, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .video-wrapper:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 100px rgba(79, 172, 254, 0.4),
+                0 15px 40px rgba(0, 0, 0, 0.6);
+            border-color: rgba(79, 172, 254, 0.4);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+        }
+
+        .video-glow {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.2), rgba(168, 85, 247, 0.2));
+            border-radius: 30px;
+            filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .video-wrapper:hover+.video-glow {
+            opacity: 1;
+        }
+
+        .demo-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 80px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .demo-feature {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .demo-feature:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(79, 172, 254, 0.3);
+            box-shadow: 0 15px 30px rgba(79, 172, 254, 0.1);
+        }
+
+        .demo-feature .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .demo-feature h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .demo-feature p {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
         /* Footer */
         footer {
             padding: 40px 20px;
@@ -684,7 +963,7 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .btn {
                 width: 100%;
                 max-width: 280px;
@@ -724,6 +1003,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Scroll Progress Bar -->
     <div class="scroll-indicator">
@@ -740,10 +1020,11 @@
         <div class="hero-content">
             <h1 class="main-title">PROJECT<br>PARADOX</h1>
             <p class="hero-tagline">
-                Multi-Agent LLM framework for Dynamic Planning, Memory-Driven Conversations, and Immersive World Interactions
+                Multi-Agent LLM framework for Dynamic Planning, Memory-Driven Conversations, and Immersive World
+                Interactions
             </p>
             <div class="cta-buttons">
-                <a href="https://www.youtube.com/watch?v=_LdutpKmYlw" class="btn btn-primary">
+                <a href="#watch-demo" class="btn btn-primary">
                     <span>Watch Demo</span>
                     <span>▶</span>
                 </a>
@@ -753,10 +1034,32 @@
                 </a>
             </div>
         </div>
-        <div class="scroll-indicator-arrow" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">
+        <div class="scroll-indicator-arrow"
+            onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">
             <svg viewBox="0 0 24 24">
-                <path d="M7 10l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 10l5 5 5-5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
+        </div>
+    </section>
+
+    <!-- Watch Demo Section -->
+    <section class="watch-demo" id="watch-demo">
+        <div class="container">
+            <h2 class="section-title">Watch the Demo</h2>
+            <p class="section-subtitle">See Project Paradox in action and discover the future of AI-driven gaming</p>
+
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/_LdutpKmYlw?rel=0&modestbranding=1&showinfo=0"
+                        title="Project Paradox Demo" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-glow"></div>
+            </div>
+
+            
         </div>
     </section>
 
@@ -764,43 +1067,53 @@
     <section class="what-is" id="about">
         <div class="container">
             <h2 class="section-title">What is Project Paradox?</h2>
-            
+
             <div class="description-content">
                 <div class="description-block">
                     <p class="description-text">
-                        Project Paradox is a <span class="highlight blue">cutting-edge AI framework</span> that brings game worlds to life with 
-                        <span class="highlight pink">intelligent, emotionally-aware, and memory-driven NPCs</span>. At its core, it powers 
-                        <span class="highlight purple">multi-agent interactions</span> where every character remembers past events, understands their environment, 
-                        forms beliefs and emotions, and plans autonomously. These agents don't just react—they 
-                        <span class="highlight green">initiate conversations, evolve based on context, and behave with intent</span>. 
-                        Whether it's gossiping about last night's tavern fight or navigating a murder mystery, 
-                        each agent plays an <span class="highlight orange">active role in shaping the world's narrative</span>.
+                        Project Paradox is a <span class="highlight blue">cutting-edge AI framework</span> that brings
+                        game worlds to life with
+                        <span class="highlight pink">intelligent, emotionally-aware, and memory-driven NPCs</span>. At
+                        its core, it powers
+                        <span class="highlight purple">multi-agent interactions</span> where every character remembers
+                        past events, understands their environment,
+                        forms beliefs and emotions, and plans autonomously. These agents don't just react—they
+                        <span class="highlight green">initiate conversations, evolve based on context, and behave with
+                            intent</span>.
+                        Whether it's gossiping about last night's tavern fight or navigating a murder mystery,
+                        each agent plays an <span class="highlight orange">active role in shaping the world's
+                            narrative</span>.
                     </p>
                 </div>
-                
+
                 <div class="description-block">
                     <p class="description-text">
-                        Built on a <span class="highlight cyan">modular architecture</span>, Project Paradox features key subsystems like the 
-                        <span class="tech-highlight">Advanced Memory Engine with RAG recall</span>, a 
-                        <span class="tech-highlight">Spatial-Aware Context Engine</span>, an 
-                        <span class="tech-highlight">Emotion-Belief-Personality Framework</span>, and an 
-                        <span class="tech-highlight">Autonomous Planning System</span>. It also includes powerful narrative tools like the 
-                        <span class="highlight magenta">Dynamic Story Trigger System</span>, where a single input—like 
-                        <span class="quote">"It's Toby's birthday"</span>—ripples across the village, influencing how all agents behave. 
-                        The framework supports <span class="feature-tag">real-time updates</span>, 
-                        <span class="feature-tag">environment feedback</span>, and seamless integration with 
-                        <span class="platform-tag">Unity</span>, <span class="platform-tag">Unreal</span>, <span class="platform-tag">Godot</span>, 
+                        Built on a <span class="highlight cyan">modular architecture</span>, Project Paradox features
+                        key subsystems like the
+                        <span class="tech-highlight">Advanced Memory Engine with RAG recall</span>, a
+                        <span class="tech-highlight">Spatial-Aware Context Engine</span>, an
+                        <span class="tech-highlight">Emotion-Belief-Personality Framework</span>, and an
+                        <span class="tech-highlight">Autonomous Planning System</span>. It also includes powerful
+                        narrative tools like the
+                        <span class="highlight magenta">Dynamic Story Trigger System</span>, where a single input—like
+                        <span class="quote">"It's Toby's birthday"</span>—ripples across the village, influencing how
+                        all agents behave.
+                        The framework supports <span class="feature-tag">real-time updates</span>,
+                        <span class="feature-tag">environment feedback</span>, and seamless integration with
+                        <span class="platform-tag">Unity</span>, <span class="platform-tag">Unreal</span>, <span
+                            class="platform-tag">Godot</span>,
                         mobile/VR platforms, and both local and cloud-based LLMs.
                     </p>
                 </div>
-                
+
                 <div class="description-block">
                     <p class="description-text">
-                        Whether you're designing <span class="highlight yellow">cozy storytelling experiences</span> or 
-                        <span class="highlight red">complex social deduction gameplay</span>, Project Paradox gives you 
-                        <span class="highlight blue">full control over how characters act, think, and respond</span>. 
-                        With just a few prompts, you can script immersive events, customize world behavior, or even build your own 
-                        <span class="highlight purple">genre-defining game</span>. It's not just AI for games—it's 
+                        Whether you're designing <span class="highlight yellow">cozy storytelling experiences</span> or
+                        <span class="highlight red">complex social deduction gameplay</span>, Project Paradox gives you
+                        <span class="highlight blue">full control over how characters act, think, and respond</span>.
+                        With just a few prompts, you can script immersive events, customize world behavior, or even
+                        build your own
+                        <span class="highlight purple">genre-defining game</span>. It's not just AI for games—it's
                         <span class="final-highlight">AI that becomes the game</span>.
                     </p>
                 </div>
@@ -814,52 +1127,59 @@
                     <div class="component-card">
                         <div class="component-icon">💬🪶⚙️</div>
                         <h4>Dynamic Story Trigger System</h4>
-                        <p>AI-powered narrative engine that adapts storylines in real-time based on player choices and environmental factors.</p>
+                        <p>AI-powered narrative engine that adapts storylines in real-time based on player choices and
+                            environmental factors.</p>
                     </div>
-                    
+
                     <div class="component-card">
                         <div class="component-icon">🧠📋</div>
                         <h4>Universal Game Prompt Framework</h4>
-                        <p>Intelligent system that generates contextually relevant prompts and scenarios for unlimited gameplay possibilities.</p>
+                        <p>Intelligent system that generates contextually relevant prompts and scenarios for unlimited
+                            gameplay possibilities.</p>
                     </div>
-                    
+
                     <!-- Core Architecture Components -->
                     <div class="component-card">
                         <div class="component-icon">🧠💾</div>
                         <h4>Advanced Memory Engine</h4>
-                        <p>RAG-based recall system that maintains context and continuity across extended gameplay sessions.</p>
+                        <p>RAG-based recall system that maintains context and continuity across extended gameplay
+                            sessions.</p>
                     </div>
-                    
+
                     <div class="component-card">
                         <div class="component-icon">💬🔄</div>
                         <h4>Conversation Engine</h4>
-                        <p>Natural language processing system for seamless player-AI communication and dialogue generation.</p>
+                        <p>Natural language processing system for seamless player-AI communication and dialogue
+                            generation.</p>
                     </div>
-                    
+
                     <div class="component-card">
                         <div class="component-icon">🎯🔍</div>
                         <h4>Context-Aware Intent Engine</h4>
-                        <p>Advanced behavioral analysis system that understands player motivations and adapts accordingly.</p>
+                        <p>Advanced behavioral analysis system that understands player motivations and adapts
+                            accordingly.</p>
                     </div>
-                    
+
                     <div class="component-card">
                         <div class="component-icon">❤️🎭🧠</div>
                         <h4>Emotion-Belief-Personality Framework</h4>
-                        <p>Sophisticated character development system that creates authentic, evolving personalities for NPCs.</p>
+                        <p>Sophisticated character development system that creates authentic, evolving personalities for
+                            NPCs.</p>
                     </div>
-                    
+
                     <div class="component-card">
                         <div class="component-icon">🗺️📍</div>
                         <h4>Spatial-Aware Context Engine</h4>
-                        <p>Environmental understanding system that tracks locations, objects, and spatial relationships.</p>
+                        <p>Environmental understanding system that tracks locations, objects, and spatial relationships.
+                        </p>
                     </div>
-                    
+
                     <div class="component-card">
                         <div class="component-icon">🌍🔄</div>
                         <h4>Interactive Environment</h4>
                         <p>Dynamic world generation system that creates responsive, living game environments.</p>
                     </div>
-                    
+
                     <div class="component-card">
                         <div class="component-icon">📊🎯</div>
                         <h4>Autonomous Planning Engine</h4>
@@ -881,19 +1201,21 @@
                     </div>
                     <h3 class="founder-name">Arunachalam Manikandan</h3>
                     <p class="founder-title">AI and Backend Engineer</p>
-                    <p class="founder-quote">"Reality is just the baseline—everything else is possibility waiting to be coded."</p>
+                    <p class="founder-quote">"Reality is just the baseline—everything else is possibility waiting to be
+                        coded."</p>
                     <a href="https://www.linkedin.com/in/arunachalam-manikandan/" class="linkedin-btn">
                         Connect on LinkedIn
                     </a>
                 </div>
-                
+
                 <div class="founder-card">
                     <div class="founder-avatar">
                         <img src="assets/Erina_Img.jpeg" alt="Sarah Chen">
                     </div>
                     <h3 class="founder-name">Erina Karati</h3>
-                    <p class="founder-title">AI and Backend Engineer</p>
-                    <p class="founder-quote">"The best games are not defined by the latest technology alone, but by how much fun they are to play."</p>
+                    <p class="founder-title">AI and Game Engineer</p>
+                    <p class="founder-quote">"The best games are not defined by the latest technology alone, but by how
+                        much fun they are to play."</p>
                     <a href="https://www.linkedin.com/in/ekarati/" class="linkedin-btn">
                         Connect on LinkedIn
                     </a>
@@ -923,7 +1245,7 @@
             const totalHeight = document.body.scrollHeight - window.innerHeight;
             const progress = (scrolled / totalHeight) * 100;
             document.getElementById('scroll-progress').style.width = progress + '%';
-            
+
             // Parallax effect for hero
             const hero = document.getElementById('hero');
             if (hero) {
@@ -981,11 +1303,11 @@
 
         // Add hover effects to buttons
         document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('mouseenter', function(e) {
+            button.addEventListener('mouseenter', function (e) {
                 const rect = this.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
+
                 const ripple = document.createElement('span');
                 ripple.style.position = 'absolute';
                 ripple.style.background = 'rgba(255,255,255,0.5)';
@@ -996,9 +1318,9 @@
                 ripple.style.top = y + 'px';
                 ripple.style.animation = 'ripple 0.6s ease-out';
                 ripple.style.pointerEvents = 'none';
-                
+
                 this.appendChild(ripple);
-                
+
                 setTimeout(() => ripple.remove(), 600);
             });
         });
@@ -1028,4 +1350,5 @@
         });
     </script>
 </body>
+
 </html>
